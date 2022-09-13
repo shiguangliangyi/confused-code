@@ -1,0 +1,16 @@
+textarea {
+    width: 500px;
+    height: 300px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.submit-btn {
+    padding: 10px 25px;
+    position: relative;
+    top: -14px;
+    cursor: pointer;
+}

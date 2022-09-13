@@ -1,0 +1,39 @@
+{
+  "name": "confused-code",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "obfuscate": "javascript-obfuscator public/js/index.js --string-array-encoding rc4",
+    "bytenode": "bytenode --compile public/js/index-obfuscated.js",
+    "bytenode:run": "bytenode public/js/index-obfuscated.js",
+    "nodec": "nodec build.js --skip-npm-install",
+    "build": "npm run obfuscate && npm run bytenode",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JavaScript",
+    "Node",
+    "Koa2",
+    "confused"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shiguangliangyi/confused-code"
+  },
+  "bugs": {
+    "url": "https://github.com/shiguangliangyi/confused-code/issues"
+  },
+  "homepage": "https://github.com/shiguangliangyi/confused-code#readme",
+  "devDependencies": {
+    "bytenode": "^1.1.1",
+    "javascript-obfuscator": "^0.18.1"
+  },
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "pug": "^2.0.3"
+  }
+}

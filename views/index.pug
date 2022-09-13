@@ -1,0 +1,60 @@
+extends layout
+
+block content
+
+  //- h1= title
+  //- p Welcome to #{title}
+  h1 混淆js代码
+  div(class='main-container')
+    div
+      p 在这里输入代码！！！
+      textarea(name="", cols="30", rows="10", id="code")
+      button(class='submit-btn', (click)='play()') 提交
+    div
+      p 这里是混淆结果！！！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 注：有时会混淆失败，重新试一次。
+      textarea(name="", cols="30", rows="10", id="result")
+  script.
+    document.querySelector('.submit-btn').onclick = function () {
+      const codeNode = document.querySelector('#code')
+      const val = codeNode.value
+      if(val.trim() === '') {
+        alert('请填写内容')
+        return
+      }
+      const code = val.split(/[\r\n]+/)
+        .map(item => {
+          console.log(item)
+          const lastChar = item.charAt(item.length-1)
+          const whiteList = [';', '{']
+          if(whiteList.includes(lastChar)) return item
+          return item += ';'
+        })
+        .join('\r\n')
+      //- console.log(val.split(/[\r\n]+/))
+      // console.log(code)
+      codeNode.value = code
+      //- return
+      document.querySelector('.submit-btn').disabled = true
+      $.ajax({
+        url: '/confused',
+        data: {
+          code: code
+        },
+        type: 'post',
+        success: res => {
+          console.log(res)
+          if(res.code === 200) {
+            document.querySelector('#result').value = res.data
+          } else {
+            alert(res.msg)
+          }
+        },
+        complete: () => {
+          document.querySelector('.submit-btn').disabled = false
+        }
+      })
+    }
+
+
+
+//- <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
