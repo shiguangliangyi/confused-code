@@ -1,5 +1,5 @@
 # confused-code
-混淆js代码
+js混淆代码
 
 ## 使用步骤
 1. 执行 ``` npm install ``` 安装依赖
